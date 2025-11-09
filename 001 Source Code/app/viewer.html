@@ -1,0 +1,14 @@
+<!doctype html><meta charset="utf-8" />
+<canvas id="v" width="960" height="540"></canvas>
+<script>
+  const ws = new WebSocket("ws://localhost:8000/ws");
+  ws.binaryType = "arraybuffer";
+  const cv = document.getElementById("v");
+  const ctx = cv.getContext("2d");
+  const img = new Image();
+  img.onload = () => ctx.drawImage(img, 0, 0, cv.width, cv.height);
+  ws.onmessage = (ev) => {
+    const blob = new Blob([ev.data], { type: "image/jpeg" });
+    img.src = URL.createObjectURL(blob);
+  };
+</script>

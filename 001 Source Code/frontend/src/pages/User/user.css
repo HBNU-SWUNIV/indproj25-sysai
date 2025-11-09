@@ -1,0 +1,135 @@
+/* 페이지 전체 */
+.user {
+  flex: 5;
+  padding: 20px;
+  background: var(--surface);
+  color: var(--text);
+}
+
+/* 제목 */
+.user h2 {
+  margin: 0 0 12px;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+/* 툴바 */
+.user .toolbar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.user .btn {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  background: var(--primary);
+  color: #fff;
+}
+.user .btn.secondary { background: #000000; }
+.user .btn.danger { background: #d14240; }
+.user .btn:disabled { opacity: .6; cursor: not-allowed; }
+
+/* 토스트 */
+.user .toast {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.12);
+  z-index: 1100;
+}
+
+/* ===== 모달 ===== */
+.user-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.user-modal {
+  width: 480px;
+  max-width: calc(100vw - 32px);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 12px 24px rgba(0,0,0,.2);
+  overflow: hidden;
+}
+
+/* 모달 헤더 */
+.user-modal-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-2);
+}
+.user-modal-header h3 { margin: 0; font-size: 16px; }
+.closeBtn {
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* 모달 본문 */
+.user-modal-body {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+}
+.user-modal-body label {
+  display: grid;
+  gap: 6px;
+  font-size: 14px;
+}
+.user-modal-body input[type="text"],
+.user-modal-body input[type="email"],
+.user-modal-body select {
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  padding: 0 10px;
+  background: var(--surface);
+  color: var(--text);
+}
+.user-modal-body .hint {
+  margin: 2px 0 0;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* 모달 액션 */
+.user-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 12px 14px;
+  border-top: 1px solid var(--border);
+}
+
+/* ===== DataGrid 헤더 보정 ===== */
+.user .MuiDataGrid-columnHeaders {
+  background: var(--surface-3);
+  border-bottom: 1px solid var(--border);
+}
+.user .MuiDataGrid-columnHeader,
+.user .MuiDataGrid-columnHeaderTitle {
+  color: #3b3d41 !important;
+  font-weight: 700;
+}
+.user .MuiDataGrid-iconSeparator {
+  color: var(--border);
+  opacity: 1;
+}

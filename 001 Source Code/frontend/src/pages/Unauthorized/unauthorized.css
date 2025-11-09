@@ -1,0 +1,68 @@
+/* src/pages/Unauthorized/unauthorized.css */
+
+.unauthorized-container {
+  /* 레이아웃 일관: 본문 컨테이너 */
+  flex: 5;
+  padding: 20px;
+  min-height: calc(100dvh - var(--topbar-height, 50px));
+  background: var(--surface);
+  color: var(--text);
+
+  /* 가운데 정렬 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 카드 */
+.unauthorized-card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--surface-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px 28px;
+  box-shadow: 0 12px 24px rgba(0,0,0,.08);
+  text-align: center;
+}
+
+/* 제목/본문 */
+.unauthorized-card h2 {
+  margin: 0 0 10px;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--danger, #e53935);
+}
+
+.unauthorized-card p {
+  margin: 0 0 18px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+/* 버튼 */
+.back-home-btn {
+  display: inline-block;
+  padding: 10px 18px;
+  border-radius: 10px;
+  background: var(--primary);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  border: 1px solid transparent;
+  transition: filter .15s ease, transform .05s ease-in-out;
+}
+
+.back-home-btn:hover { filter: brightness(.95); }
+.back-home-btn:active { transform: translateY(1px); }
+.back-home-btn:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* 작은 화면 대응 */
+@media (max-width: 480px) {
+  .unauthorized-card { padding: 20px; }
+}

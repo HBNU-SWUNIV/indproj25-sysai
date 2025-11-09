@@ -1,0 +1,53 @@
+/* src/components/topbar/userMenu.css */
+
+/* 사용자 메뉴 컨테이너 */
+.user-menu {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  width: 200px;
+  background: var(--surface, #fff);
+  color: var(--text, #222);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  overflow: hidden;
+}
+
+/* 메뉴 항목 */
+.user-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.user-menu li,
+.user-menu button {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 14px;
+  text-align: left;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  display: block;
+}
+
+.user-menu li:hover,
+.user-menu button:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* 구분선 */
+.user-menu .menuDivider {
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  margin: 4px 0;
+}
+
+/* 위험(로그아웃) 버튼 */
+.user-menu .danger {
+  color: #d32f2f;
+  font-weight: 600;
+}

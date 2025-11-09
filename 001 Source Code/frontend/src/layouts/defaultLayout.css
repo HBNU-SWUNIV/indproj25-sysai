@@ -1,0 +1,72 @@
+:root {
+  --topbar-height: 50px;
+}
+
+/* 레이아웃 루트: 상단바 + 본문 */
+.default-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  min-height: 100vh;
+  overflow: hidden; /* 바깥 스크롤 방지, 내부 스크롤 */
+}
+
+/* 본문 래퍼: 사이드바 + 메인콘텐츠 */
+.layout-body {
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 0; /* 자식 overflow:auto 허용 */
+}
+
+/* 메인 콘텐츠 */
+.layout-content {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: auto;
+
+  /* 상단 고정: 탑바 높이만큼 여백을 항상 확보 */
+  padding-top: 24px;
+  padding-right: 24px;
+  padding-left: 24px;
+  padding-bottom: 24px;
+
+  /* 본문 배경은 투명 → 카드가 --surface로 떠 보이게 */
+  background: transparent;
+  border: none;
+}
+
+/* =========================
+   차트 수직 중앙 정렬(상단 치우침 교정)
+   ========================= */
+/* 카드/박스 안에 Recharts가 있을 때, 컨테이너 자체를 수직 중앙 정렬 */
+.layout-content .MuiCardContent-root:has(.recharts-wrapper),
+.layout-content .panel:has(.recharts-wrapper),
+.layout-content .box:has(.recharts-wrapper),
+.layout-content .card:has(.recharts-wrapper) {
+  display: grid;
+  align-content: center;   /* 세로 중앙 */
+  justify-items: center;   /* 가로 중앙 */
+  /* 카드가 높을 때도 중앙 유지 */
+  min-height: 220px;       /* 필요한 경우 페이지 카드 기본 높이 */
+}
+
+/* 차트 래퍼는 레전드 자리만큼 높이를 살짝 줄여서
+   실제 플롯 영역이 카드의 세로 중앙에 오도록 함 */
+.layout-content .recharts-wrapper,
+.layout-content .recharts-responsive-container {
+  display: block;
+  margin: 8px auto !important;      /* 상하 여백 균형 */
+  height: calc(100% - 24px) !important; /* ⬅︎ legend 공간 보정(필요시 값 조절) */
+  resize: none !important;
+  overflow: visible !important;
+  position: relative;
+}
+
+/* legend는 하단에 고정(여백 예측 가능) */
+.layout-content .recharts-legend-wrapper {
+  position: absolute !important;
+  left: 50% !important;
+  transform: translateX(-50%);
+  bottom: 6px !important;
+  margin: 0 !important;
+}

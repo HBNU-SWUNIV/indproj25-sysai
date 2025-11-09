@@ -1,0 +1,203 @@
+/* frontend\src\components\topbar\topbar.css */
+:root { --topbar-height: 50px; }
+
+.topbar {
+  flex-shrink: 0; /* 탑바 폭 고정 */
+  width: 100%;
+  height: var(--topbar-height);
+  background-color: var(--surface-2);
+  position: relative;
+  top: 0;
+  z-index: 999;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  border-bottom: 1px solid var(--border);
+}
+
+.topbarWrapper {
+  height: 100%;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ===== 좌측 로고 ===== */
+.brandLogo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.logoImg {
+  height: 22px;       /* 필요시 조절 */
+  width: auto;
+  display: block;
+  /* 다크모드에서 로고가 어두울 경우 반전 */
+  filter: var(--logo-filter, none);
+}
+
+.logoText {
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: .2px;
+  color: var(--text);
+}
+
+/* 다크모드 시 로고 반전(로고 원본이 어두운 색일 때 가독성 개선) */
+[data-theme="dark"] .logoImg {
+  filter: brightness(0) invert(1);
+}
+
+/* 오른쪽 영역 */
+.topRight {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  position: relative; /* 패널 absolute 기준 */
+}
+
+/* 아이콘 버튼 (버튼/링크 공통) */
+.topbarIconContainer {
+  position: relative;
+  color: var(--text);
+  background: none;
+  border: none;
+  padding: 0;
+  line-height: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  width: 36px;
+  border-radius: 10px;
+  transition: background-color .15s ease, color .15s ease;
+}
+
+.topbarIconContainer:hover { background-color: var(--primary-50); }
+.topbarIconContainer:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* 배지 */
+.topIconBadge {
+  position: absolute;
+  top: -4px; right: 2px;
+  background-color: #e53935;
+  border-radius: 999px;
+  min-height: 16px; min-width: 16px;
+  padding: 0 4px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; color: #fff; font-weight: 700;
+}
+
+/* 로그아웃 버튼은 살짝 강조 */
+.logoutBtn:hover { color: #d84343; }
+
+/* 이니셜 아바타 버튼 */
+.avatarBtn {
+  height: 36px; width: 36px;
+  border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 1px solid var(--border);
+  background: transparent;
+  font-size: 12px; font-weight: 700; color: var(--text);
+}
+.avatarBtn:hover { background: var(--primary-50); }
+
+/* ===== 패널 공통 ===== */
+.popup {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 280px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: 0 12px 24px rgba(0,0,0,.08);
+  border-radius: 12px;
+  overflow: hidden;
+  animation: popupIn .12s ease-out;
+  z-index: 1000;
+  word-break: keep-all;
+}
+@keyframes popupIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 알림 패널 */
+.notifHeader {
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+.notifList { max-height: 300px; overflow: auto; }
+.notifItem {
+  padding: 10px 12px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  font-size: 13px;
+  line-height: 1.35;
+  border-bottom: 1px solid var(--border);
+}
+.notifItem:last-child { border-bottom: 0; }
+.notifMeta { color: var(--text-muted); font-size: 12px; }
+.notifUnreadDot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--primary);
+  align-self: center;
+}
+.notifEmpty { padding: 18px 12px; color: var(--text-muted); font-size: 13px; }
+
+/* 사용자 드롭다운 */
+.userMenu { width: 220px; }
+.menuList { padding: 6px; }
+.menuItem {
+  width: 100%;
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 14px; color: var(--text);
+  text-decoration: none;
+}
+.menuItem:hover { background: var(--primary-50); }
+.menuItem.danger:hover { background: rgba(229,57,53,.12); color: #e53935; }
+.menuDivider { height: 1px; background: var(--border); margin: 6px; }
+
+/* 반응형 */
+@media (max-width: 720px) {
+  .logoText { display: none; }   /* 화면 작아지면 텍스트만 숨김 */
+}
+
+/* ===== Theme Toggle 버튼(해/달) =====
+   - 왼쪽 아이콘들과 동일 톤 유지(hover, focus 등)
+   - 아이콘 색은 var(--text) 사용 → 다크 모드에서 자동으로 흰색 */
+.themeToggle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border);   /* 화면 예시처럼 얇은 원형 테두리 */
+  background: transparent;
+  margin-left: 4px;                  /* 아이콘 간 간격 */
+}
+
+/* 아이콘(svg) 색상을 텍스트 색에 맞춤 → 다크에서 흰색, 라이트에서 검정 */
+.themeToggle svg {
+  color: var(--text);
+}
+
+/* hover 시 배경 살짝 강조(다른 아이콘들과 통일) */
+.themeToggle:hover {
+  background: var(--primary-50);
+}

@@ -1,0 +1,165 @@
+:root {
+  /* 버튼/포커스 토큰은 전역 index.css의 변수를 재사용 */
+  --primary-color: var(--primary, #4bb1a7);
+  --button-bg: #5a5e62;           /* 라이트 기본 버튼 */
+  --button-hover-bg: #4a4d50;
+}
+
+/* 컨테이너 */
+.data {
+  flex: 5;
+  padding: 20px;
+  min-height: calc(100dvh - var(--topbar-height, 50px));
+  background: var(--surface);     /* 라이트: #fff, 다크: #1B3C53 */
+  color: var(--text);
+}
+
+/* 공통 페이지 헤더 (환경설정과 동일 톤) */
+.page-header {
+  margin: 0 0 12px;
+  padding: 0 0 8px;
+  border-bottom: 1px solid var(--border);
+}
+.page-header .page-title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+/* 업로드/파일 선택 영역 */
+.data-container {
+  width: 80%;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.file-input {
+  margin: 10px 0;
+  padding: 8px 10px;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+/* 파일 탭 버튼 */
+.file-buttons {
+  margin: 20px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.file-button {
+  padding: 10px 12px;
+  border: 0;
+  background: var(--button-bg);
+  cursor: pointer;
+  border-radius: 22px;
+  color: #fff;
+  transition: background-color .2s ease, transform .05s ease-in-out;
+}
+
+.file-button:hover { background: var(--button-hover-bg); }
+.file-button:active { transform: translateY(1px); }
+
+.file-button.active {
+  background: var(--primary-color);
+  font-weight: 700;
+}
+
+.file-button:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* 테이블(엑셀 미리보기) – 실제 DataGrid 스타일은 JSX의 sx로 제어 */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: var(--surface);
+  color: var(--text);
+}
+
+.data-table th,
+.data-table td {
+  border: 1px solid var(--border);
+  padding: 8px;
+  text-align: center;
+}
+
+.data-table th {
+  background: var(--surface-2);
+  font-weight: 700;
+}
+
+/* 행 추가 폼 */
+.add-row-form {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.add-row-form input {
+  padding: 8px 10px;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  flex-grow: 1;
+}
+
+.add-row-form button {
+  padding: 8px 12px;
+  background: var(--button-bg);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color .2s ease;
+}
+
+.add-row-form button:hover { background: var(--button-hover-bg); }
+.add-row-form button:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* 내보내기/삭제 영역 */
+.export-section {
+  margin-top: 20px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.export-button,
+.delete-button {
+  background: var(--button-bg);
+  color: #fff;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color .2s ease;
+}
+
+.export-button:hover,
+.delete-button:hover { background: var(--button-hover-bg); }
+
+.export-button:focus-visible,
+.delete-button:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* 반응형 */
+@media (max-width: 480px) {
+  .add-row-form input,
+  .add-row-form button {
+    flex-basis: 100%;
+  }
+}

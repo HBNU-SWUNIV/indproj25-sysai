@@ -1,0 +1,123 @@
+/* src/pages/Login/login.css */
+
+/* 컴포넌트 전용 토큰: 전역 토큰을 기본으로 사용 */
+:root {
+  --login-primary: var(--primary);
+  --login-primary-hover: var(--primary-600);
+  --login-secondary: #5a5e62;
+  --login-secondary-hover: #4a4d50;
+}
+
+/* 다크모드에서도 전역 토큰에 자동 맞춤 */
+:root[data-theme="dark"] {
+  --login-primary: var(--primary);
+  --login-primary-hover: var(--primary-600);
+  --login-secondary: rgba(255,255,255,0.18);
+  --login-secondary-hover: rgba(255,255,255,0.28);
+}
+
+.login-container {
+  flex: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Topbar 높이 제외 + 모바일 주소창 이슈 방지 */
+  min-height: calc(100dvh - var(--topbar-height, 50px));
+
+  /* 페이지 배경을 전역 surface로 통일 (다크: #456882) */
+  background: var(--surface);
+  padding: 24px;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 520px;
+
+  /* 카드면은 라이트/다크 모두 surface-2 사용 */
+  background: var(--surface-2);
+  color: var(--text);
+
+  padding: 28px 32px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 20px rgba(0,0,0,.08);
+}
+
+.login-card h2 {
+  margin: 0 0 16px 0;
+  font-size: 22px;
+  color: var(--text);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.login-label {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.login-input {
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  outline: none;
+  background: var(--surface);
+  color: var(--text);
+}
+
+.login-input::placeholder { color: var(--text-muted); }
+
+.login-input:focus-visible {
+  border-color: var(--login-primary);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--login-primary) 25%, transparent);
+}
+
+.btn {
+  border: none;
+  border-radius: 10px;
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: background-color .2s ease, opacity .2s ease;
+  font-weight: 700;
+}
+
+.btn:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background-color: var(--login-primary);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: var(--login-primary-hover);
+}
+
+.btn-secondary {
+  background-color: var(--login-secondary);
+  color: #fff;
+}
+
+.btn-secondary:hover {
+  background-color: var(--login-secondary-hover);
+}
+
+.login-submit { margin-top: 6px; }
+
+.error {
+  color: var(--danger);
+  font-size: 13px;
+  margin-top: 2px;
+}
+
+/* 작은 화면 대응 */
+@media (max-width: 480px) {
+  .login-card { padding: 22px; }
+}

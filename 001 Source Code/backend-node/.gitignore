@@ -1,0 +1,4 @@
+node_modules/
+swagger_x.js
+.env
+venv/

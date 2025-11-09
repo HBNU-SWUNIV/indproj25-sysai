@@ -1,0 +1,284 @@
+/* frontend\src\pages\Dashboard\dashboard.css */
+.dashboard {
+  flex: 5;
+  padding: 20px;
+  min-height: calc(100dvh - var(--topbar-height, 50px));
+  background: var(--surface);
+  color: var(--text);
+}
+
+/* ===== 페이지 상단 제목(Setting과 동일한 톤) ===== */
+.page-header {
+  margin-bottom: 16px;
+}
+.page-header h1 {
+  margin: 0 0 6px;
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--text);
+}
+.page-header p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+/* 템플릿 컨트롤 버튼 그룹 */
+.template-controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+/* 컨트롤 버튼 공통 */
+.template-controls button {
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 700;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+  background: var(--surface-2);
+  color: var(--text);
+}
+.template-controls button:hover { background: var(--primary-50); }
+
+/* 새 템플릿 버튼 */
+.template-controls .btn-new-template,
+.template-controls button:nth-child(4) {
+  background: var(--primary);
+  color: #fff;
+  border-color: transparent;
+}
+.template-controls .btn-new-template:hover,
+.template-controls button:nth-child(4):hover {
+  filter: brightness(0.95);
+}
+
+/* ===============================
+   템플릿 목록(칩 버튼)
+   =============================== */
+.template-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.template-list .template-chip,
+.template-list button,
+.template-list a,
+.template-list span {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--text);
+  transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  font-weight: 700;
+}
+.template-list .template-chip:hover,
+.template-list button:hover,
+.template-list a:hover,
+.template-list span:hover {
+  background: var(--primary-50);
+}
+.template-list .active-template,
+.active-template {
+  background: var(--primary) !important;
+  color: #fff !important;
+  font-weight: 800;
+  border-color: transparent !important;
+}
+
+/* 레거시 Fallback */
+.dashboard > div:nth-child(4) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.dashboard > div:nth-child(4) button {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  color: var(--text);
+  transition: background-color .2s ease;
+  font-weight: 700;
+}
+.dashboard > div:nth-child(4) button:hover { background: var(--primary-50); }
+
+/* Layout 영역 */
+.layout {
+  background: var(--surface);
+  padding: 1px;
+}
+
+/* 위젯 컨테이너 */
+.widget {
+  background: var(--surface);
+  border: 1px dashed var(--border);
+  border-radius: 10px;
+  text-align: center;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  overflow: hidden;
+  cursor: move;
+  position: relative;
+  transition: border-color .2s ease, background-color .2s ease;
+}
+
+/* 위젯 내용 박스(차트/표) */
+.widget .widget-content {
+  width: 100%;
+  height: 100%;
+  background: var(--surface);
+  border-radius: 10px;
+  overflow: hidden;
+
+  /* ✅ 차트를 카드의 정중앙으로 */
+  display: flex;
+  align-items: center;       /* 세로 중앙 */
+  justify-content: center;   /* 가로 중앙 */
+  padding: 8px 12px;         /* 가장자리 숨쉬기 */
+}
+
+/* 휴지통 위로 드래그 중인 위젯 */
+.widget.drag-to-trash{
+  border: 2px dashed var(--danger);
+  background: color-mix(in oklab, var(--danger) 8%, transparent);
+}
+.widget.drag-to-trash .widget-content{
+  filter: grayscale(100%) brightness(0.85);
+  opacity: 0.6;
+  transition: filter .15s ease, opacity .15s ease;
+  pointer-events: none;
+}
+/* 중앙 안내 오버레이 */
+.widget.drag-to-trash::after{
+  content: "휴지통으로 삭제";
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: var(--danger);
+  color: #fff;
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: .2px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.25);
+}
+
+/* 차트를 감싸는 공통 호스트 — 중앙 정렬 안전장치 */
+.chart-host {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;       /* 세로 중앙 */
+  justify-content: center;   /* 가로 중앙 */
+}
+.chart-host .recharts-responsive-container,
+.chart-host .recharts-wrapper {
+  margin: 0 auto !important;
+  display: block;
+}
+
+/* 위젯에 아무 것도 없을 때 */
+.widget-label {
+  width: 100%;
+  height: 100%;
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 16px;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+.widget-label:hover { background: var(--primary-50); }
+
+/* 모달 공통 스타일 */
+.data-selection {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--surface);
+  color: var(--text);
+  padding: 18px;
+  border: 1px solid var(--border);
+  box-shadow: 0 12px 24px rgba(0,0,0,.18);
+  z-index: 1000;
+  min-width: 300px;
+  border-radius: 12px;
+}
+.data-selection-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.data-selection-header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--text);
+}
+.closeBtn {
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: var(--text);
+}
+
+/* 모달 안 선택 버튼들 */
+.dataSelectionBtn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0;
+  background: var(--surface-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color .2s ease;
+}
+.dataSelectionBtn:hover { background: var(--primary-50); }
+
+.deleteIcon {
+  color: var(--text-muted);
+  font-size: 40px !important;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+/* 반응형 */
+@media (max-width: 480px) {
+  .template-controls button,
+  .template-list .template-chip,
+  .template-list button,
+  .template-list a,
+  .template-list span,
+  .dashboard > div:nth-child(4) button {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+}

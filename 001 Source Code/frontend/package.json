@@ -1,0 +1,54 @@
+{
+  "name": "fmds",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^6.4.7",
+    "@mui/x-data-grid": "^7.28.0",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.2.0",
+    "@testing-library/user-event": "^13.5.0",
+    "add": "^2.0.6",
+    "axios": "^1.8.4",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-grid-layout": "^1.5.1",
+    "react-live": "^4.1.8",
+    "react-modal": "^3.16.3",
+    "react-router-dom": "^7.6.2",
+    "react-scripts": "5.0.1",
+    "react-window": "^1.8.11",
+    "rechart": "^0.0.1",
+    "recharts": "^2.15.1",
+    "socket.io-client": "^4.8.1",
+    "web-vitals": "^2.1.4",
+    "xlsx": "^0.18.5"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

@@ -1,0 +1,67 @@
+.home {
+  flex: 5;
+  padding: 20px;
+  min-height: calc(100dvh - var(--topbar-height, 50px));
+  background: var(--surface);   /* 라이트: #fff, 다크: #456882 */
+  color: var(--text);
+}
+
+.home h2 {
+  margin: 0 0 12px 0;
+  color: var(--text);
+}
+
+.templateBtn {
+  background: var(--surface-2);       /* 다크: 톤온톤 */
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-right: 8px;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color .2s;
+  color: var(--text);
+}
+.templateBtn:hover { background-color: var(--primary-50); }
+.templateBtn.active {
+  background-color: var(--primary);
+  color: #fff;
+  font-weight: 700;
+}
+
+.widget.no-border { border: none; }
+
+/* 카드(차트 박스) 가독성 */
+.widget .widget-content {
+  width: 100%;
+  height: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+
+  /* ✅ 차트를 카드의 정중앙으로 */
+  display: flex;
+  align-items: center;     /* 세로 중앙 */
+  justify-content: center; /* 가로 중앙 */
+  padding: 8px 12px;       /* 가장자리 숨쉬기 */
+}
+
+/* 차트 호스트: 내부에 width/height가 있는 div를 감쌈 */
+.chart-host {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;        /* 세로 중앙 */
+  justify-content: center;    /* 가로 중앙 */
+}
+
+/* Recharts 래퍼도 안전하게 중앙 */
+.chart-host .recharts-responsive-container,
+.chart-host .recharts-wrapper {
+  margin: 0 auto !important;
+  display: block;
+}
+
+/* react-grid-layout 기본 spacing 보정(선택) */
+.react-grid-layout { gap: 8px; }
