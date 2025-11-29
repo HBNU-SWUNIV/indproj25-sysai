@@ -1,0 +1,159 @@
+/* =========================
+   FMDS 2.0 Global Theme Tokens
+   ========================= */
+:root {
+  /* Brand (light) */
+  --primary: #4bb1a7;
+  --primary-600: #3aa197;
+  --primary-50: #e7f5f3;
+
+  /* Neutrals (light) */
+  --bg: #f8f9fb;
+  --surface: #f8f9fb;
+  --surface-2: #f0efef;       /* 사이드바/탑바 등 옅은 배경 */
+  --surface-3: #e8ecef;       /* 표/섹션 헤더(라이트) 대비용 */
+  --text: #222222;
+  --text-muted: #242424;
+  --border: rgba(0,0,0,.08);
+  --plugin-list: #efefef;
+
+  /* States */
+  --success: #2e7d32;
+  --warning: #f39c12;
+  --danger: #e53935;
+
+  /* Layout */
+  --topbar-height: 50px;
+
+  /* Charts (light) */
+  --chart-grid: rgba(0, 0, 0, 0.696);
+  --chart-axis: rgba(0,0,0,.45);
+  --chart-label: #1f2329;
+  --chart-series-1: #6a7bff;    /* 라인/막대 1 */
+  --chart-series-2: #f59e0b;    /* 라인/막대 2 */
+}
+
+/* ===== Dark theme ===== */
+:root[data-theme="dark"] {
+  /* 배경 계층: bg < surface-2 < surface */
+  --bg: #0E2431;            /* 전체 배경 */
+  --surface: #0E2431;       /* 본문/카드 배경 (더 밝은 면) */
+  --surface-2: #173246;     /* 사이드바/탑바 (더 어두운 면) */
+  --surface-3: #385165;     /* 표/섹션 헤더 */
+  --text: #F9F3EF;
+  --text-muted: #C9D6DE;
+  --border: rgba(255, 255, 255, 0.215);
+  --plugin-list: #173246;  /* 플러그인 리스트 배경 */
+  /* 브랜드 컬러(카드색과 분리) */
+  --primary: #4BB1A7;
+  --primary-600: #3aa197;
+  --primary-50: rgba(75,177,167,.18);
+
+  /* Charts (dark) */
+  --chart-grid: rgba(255,255,255,.25);
+  --chart-axis: rgba(255,255,255,.55);
+  --chart-label: #CFE3EE;
+  --chart-series-1: #A6B6FF;  /* 메인 라인/막대 */
+  --chart-series-2: #F7B267;  /* 보조 라인/막대 */
+}
+
+/* =========================
+   Reset & base
+   ========================= */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+/* Links */
+a { color: inherit; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Buttons reset */
+button { font-family: inherit; border: none; outline: none; cursor: pointer; background: none; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background-color: var(--border); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background-color: rgba(0,0,0,.18); }
+::-webkit-scrollbar-track { background-color: transparent; }
+
+/* =========================
+   공통 레이아웃 톤
+   ========================= */
+.topbar {
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+}
+.sidebar {
+  background: var(--surface-2);
+  border-right: 1px solid var(--border);
+}
+
+/* ✅ 본문 배경은 투명 – 카드가 --surface 톤으로 떠보이게 */
+.layout-content, .content, main {
+  background: transparent;
+  color: var(--text);
+}
+
+/* ===== MUI/컴포넌트 가시성 보정 (다크) ===== */
+:root[data-theme="dark"] .MuiPaper-root,
+:root[data-theme="dark"] .MuiCard-root {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+
+/* Dark 모드에서의 몇 가지 보정 */
+:root[data-theme="dark"] .topbar .logo { color: var(--text); }
+:root[data-theme="dark"] .topbar .topbarIconContainer { color: var(--text); }
+:root[data-theme="dark"] .topbar .topbarIconContainer:hover { background: var(--primary-50); }
+
+:root[data-theme="dark"] .sidebarLink:hover { background: var(--primary-50); color: var(--text); }
+:root[data-theme="dark"] .sidebarLink.active { background: var(--primary); color: #fff; }
+
+/* =========================
+   Recharts 전역 대비 보정 (특히 다크)
+   ========================= */
+.recharts-cartesian-grid line {
+  stroke: var(--chart-grid) !important;
+}
+.recharts-cartesian-axis-line,
+.recharts-cartesian-axis-tick-line {
+  stroke: var(--chart-axis) !important;
+}
+.recharts-text {
+  fill: var(--chart-label) !important;  /* 축 라벨/틱/툴팁 텍스트 */
+}
+.recharts-legend-item-text {
+  color: var(--chart-label) !important;
+}
+
+/* (선택) 라인·점 기본색을 변수로 – 컴포넌트에서 별도 색을 안 주었을 때 대비 향상 */
+/* .recharts-line .recharts-curve {
+  stroke: var(--chart-series-1) !important;
+}
+.recharts-line .recharts-dot {
+  fill: #ffffff !important;
+  stroke: var(--chart-series-1) !important;
+}
+.recharts-bar-rectangle path {
+  fill: var(--chart-series-2) !important;
+} */
+
+/* 차트를 카드 안에서 확실히 가운데로 */
+.recharts-responsive-container,
+.recharts-wrapper {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  display: block;
+}
+
+/* Utils */
+.text-muted { color: var(--text-muted) !important; }
+.hr { border: none; border-top: 1px solid var(--border); margin: 12px 0; }

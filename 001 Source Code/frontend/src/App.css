@@ -1,0 +1,22 @@
+/* 전체 레이아웃 */
+.container {
+  display: flex;
+  align-items: stretch;
+  min-height: calc(100vh - 56px); /* Topbar 높이만큼 보정(대략값) */
+}
+
+/* 메인 영역은 남는 공간 전부 */
+.main {
+  flex: 1 1 auto;
+  min-width: 0;           /* DataGrid 등 가로 스크롤 깨짐 방지 */
+  padding: 16px;
+}
+
+/* 카드/박스가 배경과 더 분리되도록 (다크에서 효과 큼) */
+.main .card,
+.main .box,
+.main .panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}

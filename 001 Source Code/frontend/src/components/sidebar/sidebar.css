@@ -1,0 +1,90 @@
+/* FMDS_2.0/frontend/src/components/sidebar/sidebar.css */
+
+.sidebar {
+  flex-shrink: 0; /* 사이드바 폭 고정 */
+  width: 240px;
+  min-width: 200px;
+  max-width: 280px;
+
+  /* 높이는 그대로 상단바 높이만큼 빼서 계산 */
+  height: calc(100dvh - var(--topbar-height));
+  background-color: var(--surface-2);
+
+  position: sticky;
+  /* 변경: top 값을 0으로 */
+  top: 0;
+  overflow-y: auto;
+}
+
+.sidebarWrapper {
+  padding: 16px;
+  color: var(--text-muted);
+}
+
+/* 상단 로고(텍스트) */
+.brand {
+  padding: 8px 6px 2px;
+  font-weight: 800;
+  color: var(--text);
+  font-size: 18px;
+  letter-spacing: .2px;
+}
+
+.sidebarMenu {
+  margin-top: 10px;
+  margin-bottom: 2rem;
+}
+
+.sidebarTitle {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin: 8px 6px;
+}
+
+.sidebarList {
+  list-style: none;
+  padding: 0.5rem;
+  margin: 0;
+}
+
+/* li는 레이아웃만 담당 (active 스타일은 링크에 적용) */
+.sidebarListItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.sidebarIcon {
+  margin-right: 10px;
+  font-size: 20px !important;
+}
+
+/* 링크 스타일 */
+.sidebarLink {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 12px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* hover & active 하이라이트 */
+.sidebarLink:hover {
+  background-color: var(--primary-50);
+  color: var(--text);
+}
+
+/* NavLink가 부여한 active 클래스 */
+.sidebarLink.active {
+  background-color: var(--primary);
+  color: white;
+}
+
+/* 키보드 접근성 */
+.sidebarLink:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
